@@ -10,9 +10,8 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  // Uncomment and update if deploying to username.github.io/repo-name
-  // basePath: '/repo-name',
-  // assetPrefix: '/repo-name/',
+  basePath: "/portfolio",
+  assetPrefix: "/portfolio/",
   async redirects() {
     return [
       {
