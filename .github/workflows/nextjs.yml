@@ -40,20 +40,6 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: List build output
-        run: |
-          echo "Checking for out directory..."
-          ls -la
-          if [ -d "./out" ]; then
-            echo "out directory exists"
-            ls -la ./out
-            touch ./out/.nojekyll
-          else
-            echo "ERROR: out directory not found!"
-            echo "Build may have failed or output directory is different"
-            exit 1
-          fi
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
