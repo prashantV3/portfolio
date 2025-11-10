@@ -36,7 +36,17 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build with Next.js
-        run: yarn build
+        run: |
+          yarn build
+          echo "Build completed. Checking directories..."
+          ls -la
+          echo "Checking for out directory..."
+          if [ -d "./out" ]; then
+            echo "✓ out directory found"
+            ls -la ./out | head -20
+          else
+            echo "✗ out directory NOT found"
+          fi
         env:
           NODE_ENV: production
 
