@@ -1,13 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   swcMinify: true,
   images: {
+    unoptimized: true,
     domains: ["cdn.sanity.io", "zomeru.com", "raw.githubusercontent.com"],
   },
   compiler: {
     styledComponents: true,
   },
+  // Uncomment and update if deploying to username.github.io/repo-name
+  // basePath: '/repo-name',
+  // assetPrefix: '/repo-name/',
   async redirects() {
     return [
       {
@@ -44,9 +49,4 @@ const nextConfig = {
   },
 };
 
-const withPWA = require("next-pwa")({
-  dest: "public",
-});
-
-module.exports =
-  process.env.NODE_ENV === "production" ? withPWA(nextConfig) : nextConfig;
+module.exports = nextConfig;

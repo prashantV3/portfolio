@@ -6,7 +6,6 @@ import {
   Projects,
   Contact,
   PageHead,
-  ChatAI,
 } from "../src/components";
 interface IHomeProps {
   isHome: boolean;
@@ -18,7 +17,6 @@ const Home: React.FC<IHomeProps> = ({ isHome }) => {
       <PageHead seo={{ ...customSeo }} />
       <Layout isHome={isHome}>
         <Hero />
-        <ChatAI />
         <About />
         <Projects />
         <Contact />
