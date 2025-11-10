@@ -1,8 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,40 +17,25 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
+      
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
           cache: 'yarn'
-
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        with:
-          static_site_generator: next
-
+      
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Build with Next.js
-        run: |
-          yarn build
-          echo "Build completed. Checking directories..."
-          ls -la
-          echo "Checking for out directory..."
-          if [ -d "./out" ]; then
-            echo "✓ out directory found"
-            ls -la ./out | head -20
-          else
-            echo "✗ out directory NOT found"
-          fi
-        env:
-          NODE_ENV: production
-
+      
+      - name: Build
+        run: yarn build
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
