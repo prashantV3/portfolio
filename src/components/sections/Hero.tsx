@@ -28,10 +28,10 @@ const StyledName = styled.h2`
   font-size: clamp(28px, 7vw, 85px);
   margin-bottom: 10px;
   position: relative;
-  max-width: 720px;
+  max-width: 900px;
   animation: ${gradient} 5s ease-in-out infinite;
   background: ${({ theme }) =>
-    `linear-gradient(to right, #8b174b, #570f66, #341671, ${theme.accentMain})`};
+    `linear-gradient(to right, #ff0015ff, #5b02ffff, #341671, ${theme.accentMain})`};
   background-size: 300%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -40,7 +40,7 @@ const StyledName = styled.h2`
 
 const Hero = () => {
   const one = <h1>Hi there, I am</h1>;
-  const two = <StyledName>Zomer Gregorio.</StyledName>;
+  const two = <StyledName>Prashant Shrestha.</StyledName>;
   const three = <h3>I create stuff for the web.</h3>;
   const four = (
     <p className="four">

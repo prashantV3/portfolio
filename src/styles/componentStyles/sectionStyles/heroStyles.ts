@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const StyledHero = styled.section`
   align-items: center;
@@ -55,7 +55,7 @@ export const StyledHeroContent = styled(motion.div)`
     font-size: clamp(28px, 7vw, 85px);
     margin-bottom: 10px;
     position: relative;
-    max-width: 720px;
+    max-width: 900px;
   }
 
   h3 {
@@ -127,7 +127,7 @@ export const StyledHeroContent = styled(motion.div)`
     }
 
     ::after {
-      content: '';
+      content: "";
       position: absolute;
       border-radius: 100px;
       background-color: ${({ theme }) => theme.floatBG};
