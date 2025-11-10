@@ -81,7 +81,7 @@ const Blog: React.FC<BlogProps> = ({ isHome, images, titles, slugs }) => {
 
 export default Blog;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const query = encodeURIComponent('*[ _type == "post" ]');
   const url = `https://${process.env.SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/production?query=${query}`;
   const result = await fetch(url).then((res) => res.json());
@@ -90,6 +90,9 @@ export const getServerSideProps = async () => {
     return {
       props: {
         posts: [],
+        images: [],
+        titles: [],
+        slugs: [],
       },
     };
   } else {
@@ -99,6 +102,7 @@ export const getServerSideProps = async () => {
         titles: result.result.map((p: any) => p.title),
         slugs: result.result.map((p: any) => p.slug.current),
       },
+      revalidate: 60, // Revalidate every 60 seconds
     };
   }
 };

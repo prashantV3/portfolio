@@ -228,10 +228,38 @@ const SinglePost: React.FC<SinglePostProps> = ({
 
 export default SinglePost;
 
-export async function getServerSideProps(
-  pageContext: GetServerSidePropsContext
-) {
-  const pageSlug = pageContext.query.slug;
+export async function getStaticPaths() {
+  const query = encodeURIComponent('*[ _type == "post" ]');
+  const url = `https://${process.env.SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/production?query=${query}`;
+
+  try {
+    const result = await fetch(url).then((res) => res.json());
+
+    if (!result.result || !result.result.length) {
+      return {
+        paths: [],
+        fallback: "blocking",
+      };
+    }
+
+    const paths = result.result.map((post: any) => ({
+      params: { slug: post.slug.current },
+    }));
+
+    return {
+      paths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  }
+}
+
+export async function getStaticProps(pageContext: GetServerSidePropsContext) {
+  const pageSlug = pageContext.params?.slug;
 
   if (!pageSlug) {
     return {
@@ -261,6 +289,7 @@ export async function getServerSideProps(
         updatedAt: post._updatedAt,
         slug: post.slug.current,
       },
+      revalidate: 60, // Revalidate every 60 seconds
     };
   }
 }

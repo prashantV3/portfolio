@@ -2,9 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: "export",
   images: {
-    unoptimized: true,
     domains: ["cdn.sanity.io", "zomeru.com", "raw.githubusercontent.com"],
   },
   compiler: {
