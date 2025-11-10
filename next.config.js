@@ -10,42 +10,8 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  basePath: "/portfolio",
-  assetPrefix: "/portfolio/",
-  async redirects() {
-    return [
-      {
-        source: "/facebook",
-        destination: "https://facebook.com/Zomeru",
-        permanent: false,
-      },
-      {
-        source: "/instagram",
-        destination: "https://instagram.com/zomeruu",
-        permanent: false,
-      },
-      {
-        source: "/tiktok",
-        destination: "https://tiktok.com/@zomeru_sama",
-        permanent: false,
-      },
-      {
-        source: "/twitter",
-        destination: "https://twitter.com/zomeru_sama",
-        permanent: false,
-      },
-      {
-        source: "/linkedin",
-        destination: "https://linkedin.com/in/zomergregorio",
-        permanent: false,
-      },
-      {
-        source: "/github",
-        destination: "https://github.com/zomeru",
-        permanent: false,
-      },
-    ];
-  },
+  // Note: redirects() doesn't work with static export
+  // You'll need to handle these redirects via client-side routing or create static redirect pages
 };
 
 module.exports = nextConfig;
